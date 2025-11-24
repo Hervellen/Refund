@@ -1,73 +1,70 @@
-# React + TypeScript + Vite
+# Refund — Sistema de Reembolso
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto foi desenvolvido como parte de um estudo prático de criação de interfaces modernas utilizando **React**, **TypeScript** e **TailwindCSS**. O objetivo foi construir um fluxo completo de criação de conta, gerenciamento de usuários e navegação com base em permissões.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📸 Demonstração
 
-## React Compiler
+### Tela de Login
+![Tela de Login](5f21d079-c545-4178-92a8-cb99b2895756.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Tela de Cadastro
+![Tela de Cadastro](de17ade2-26b7-464c-93a9-02eb79d6addb.png)
 
-## Expanding the ESLint configuration
+### Solicitação de Reembolso
+![Tela de Solicitação](f7a5c1d1-65a4-4abc-97eb-1d0d4d95da6f.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Funcionalidades Principais
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🔐 Criação de Conta
+Criamos a página de criação de conta utilizando **TailwindCSS** para estilização rápida, produtiva e consistente.  
+Foram explorados eventos importantes do formulário, como:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Manipulação do evento **onSubmit**
+- Validação de campos
+- Navegação entre páginas após o envio do formulário
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 📁 Upload de Arquivos
+Implementamos upload de arquivos para permitir anexos durante o processo de cadastro e gerenciamento.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+### 🔗 Roteamento com Permissões
+A lógica de navegação foi construída com foco em **controle de acesso**, permitindo que o usuário seja direcionado para telas diferentes conforme suas permissões.
+
+---
+
+### 📊 Interface de Gerenciamento
+Foi desenvolvida uma área administrativa com:
+
+- Campo de **pesquisa**
+- **Paginação** funcional
+- Listagem organizada dos itens
+- Integração com os componentes criados
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **React**
+- **TypeScript**
+- **TailwindCSS**
+- **Vite**
+- **React Router**
+
+
+---
+
+## 📦 Como Rodar o Projeto
+
+```bash
+# Instalar dependências
+npm install
+
+# Rodar o servidor de desenvolvimento
+npm run dev
