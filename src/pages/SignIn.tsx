@@ -1,35 +1,59 @@
-import { useState } from "react"
+import { useActionState } from "react"
+import { z, ZodError} from "zod"
 import { Input } from "../components/input"
 import { Button } from "../components/Button"
 
+const sigInScheme = z.object({
+    email: z.string().email({message: "E-mail inválido"}),
+    password: z.string().trim().min(1, {message: "informe a senha"})
+})
+
 export function SignIn(){
-    const [email, setEmail] = useState("")
-    const [password, setPassword]= useState("")
-    const [isLoading, setIsLoading]= useState(false)
+    const [state, formAction, isLoading] = useActionState(signIn, null)
+    
+   async function signIn(_:any, formData: FormData){
+    try{
+      const data = sigInScheme.parse({
+        email:formData.get("email"),
+        password: formData.get("password")
+      })     
+      console.log(data)
+    }catch (error){
+        console.log(error)
 
-    function onSubmit(e: React.FormEvent){
-        e.preventDefault()
+        if (error instanceof ZodError){
+            return {message:error.issues[0].message}
+        }
+    }
 
-        console.log(email, password)
+
+    return {message: "Não foi possível entrar!"}
 
 
     }
 
-    return <form onSubmit = {onSubmit} className="w-full flex flex-col gap-4">
+    return <form action = {formAction} className="w-full flex flex-col gap-4">
         <Input
+        name="email"
         required
         legend="E-mail"
         type="email"
         placeholder="seu@email.com"
-        onChange={(e)=> setEmail(e.target.value)}
+        
+       
         />
 
+        <p className="text-sm text-red-600 text-center my-4 font-medium">
+            {state?.message}
+        </p>
+
         <Input
+        name="password"
         required
         legend="Senha"
         type="password"
         placeholder="123456"
-        onChange={(e)=> setPassword(e.target.value)}
+        
         />
 
         <Button type="submit" isLoading={isLoading}>Entrar</Button>
